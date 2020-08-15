@@ -58,12 +58,26 @@ document.querySelector("#test").addEventListener('mouseenter', (e) => {
     }
 })
 
+document.querySelector("#resume").addEventListener('click', (e) => {
+    writeNewActionText('resume clicked')
+    $("#about").animate({opacity: 0}, 500, () => {
+        document.getElementById("about").style.visibility = "hidden";
+    });
+    $("#test").animate({opacity: 0}, 500, () => {
+        document.getElementById("test").style.visibility = "hidden";
+    });
+    // document.getElementById("about").style.visibility = "hidden";
+    // document.getElementById("test").style.visibility = "hidden";
 
-// document.querySelector("#about").addEventListener('mouseleave', (e) => {
-//     // typed.toggle()
-//     // typed.start()
-//     // typed.stop()
-// })
+    document.getElementById("github").innerHTML = "<p class='nav-button-title'>--></p>";
+    document.getElementById("resume").innerHTML = "<p class='nav-button-title'><--</p>";
+    
+})
+
+document.querySelector("#test").addEventListener('click', (e) => {
+    writeNewActionText('test clicked')
+})
+
 
 function writeNewActionText(text) {
     writeNewTextForId('#action-text-id', text)
