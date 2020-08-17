@@ -58,16 +58,28 @@ document.querySelector("#test").addEventListener('mouseenter', (e) => {
     }
 })
 
+document.querySelector("#test").addEventListener('click', (e) => {
+    writeNewActionText('test clicked');
+    $testButton = $('#test');
+    $testButton.removeClass('enlarged')
+    $testButton.addClass('flat');
+    
+    // Run function after 3s
+    setTimeout(() => {
+        $testButton.removeClass('flat');
+        $testButton.addClass('enlarged');
+    }, 3000)
+    // const testElem = document.getElementById("test")
+    // const computedStyle = window.getComputedStyle(testElem)
+})
+
 document.querySelector("#resume").addEventListener('click', (e) => {
-    writeNewActionText('resume clicked')
-    $("#about").animate({opacity: 0}, 500, () => {
-        document.getElementById("about").style.visibility = "hidden";
+    $("#button-0").animate({opacity: 0}, 500, () => {
+        document.getElementById("button-0").style.visibility = "hidden";
     });
-    $("#test").animate({opacity: 0}, 500, () => {
-        document.getElementById("test").style.visibility = "hidden";
+    $("#button-3").animate({opacity: 0}, 500, () => {
+        document.getElementById("button-3").style.visibility = "hidden";
     });
-    // document.getElementById("about").style.visibility = "hidden";
-    // document.getElementById("test").style.visibility = "hidden";
 
     document.getElementById("github").innerHTML = "<p class='nav-button-title'>--></p>";
     document.getElementById("resume").innerHTML = "<p class='nav-button-title'><--</p>";
@@ -83,12 +95,13 @@ function writeNewActionText(text) {
     writeNewTextForId('#action-text-id', text)
 }
 
-function writeNewTextForId(id, text) {
+function writeNewTextForId(id, text, typeSpeed = 50, backSpeed = 30) {
     typed.destroy();
 
     typed = new Typed(id, {
         strings: [text],
-        typeSpeed: 50,
-        backSpeed: 30,
+        typeSpeed: typeSpeed,
+        backSpeed: backSpeed,
+        autoInsertCss: true,
     })
 }

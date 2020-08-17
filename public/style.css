@@ -15,6 +15,9 @@ body {
     height: 100%;
 }
 
+a {
+    color: white;
+}
 
 /* sets every element in the page within the div to be in the center */
 #body-wrapper {
@@ -42,7 +45,7 @@ body {
 .main-page-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 /* texts within the main display of the page */
@@ -58,11 +61,37 @@ body {
     
     width: 28rem;
     height: 9rem;
+
+    transition-property: height, width;
+    transition-duration: 3s;
+    transition-timing-function: ease-in-out;
+}
+
+.text-container.flat {
+    height: 0;
+}
+
+.text-container.enlarged {
+    width: 42rem;
+    height: 13.5rem;
 }
 
 /* title in main display */
 .title {
     font-size: 2.5rem;
+}
+
+.resume-text {
+    font-size: 1.5rem;
+    display: inline;
+}
+
+.typed-cursor{
+    font-size: 1.5rem;
+    opacity: 1;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
 }
 
 /* typing action text in main display */
@@ -90,6 +119,10 @@ body {
     height: 3rem;
     
     position: relative;
+
+    transition-property: height, width;
+    transition-duration: 3s;
+    transition-timing-function: ease-in-out;
 }
 
 /* title for the navigation buttons */
@@ -105,3 +138,18 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.nav-button.flat {
+    height: 0rem; 
+}
+
+.nav-button.enlarged {
+    height: 10rem;
+    width: 10rem;
+}
+
+#back-button {
+    opacity: 0;
+    visibility: hidden;
+}
+
