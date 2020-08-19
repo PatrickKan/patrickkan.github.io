@@ -1,6 +1,8 @@
-resumeIndex = 0;
+import {playSnakeGame2} from './snake_game/game.js';
 
-resumeContent = [
+var resumeIndex = 0;
+
+const resumeContent = [
     `Hey! Welcome to my resume. Press the right and left buttons to scroll through!
     <br>
     <br>
@@ -14,62 +16,133 @@ resumeContent = [
     `I've also interned with Microsoft and State Farm...`
 ]
 
-document.querySelector("#resume").addEventListener('click', (e) => {
-    reuseTextContainer()
+export function addResumeEvents() {
+    document.querySelector("#resume").addEventListener('click', (e) => {
+        remapButtons();
+        reuseTextContainer();
 
-    document.getElementById("tagline-id").innerText = "the resume game"
+        document.getElementById("tagline-id").innerText = "the resume game"
 
-    document.getElementById("back-button").style.visibility = "visible";
-    $("#back-button").animate({opacity: 1}, 500)
+        // document.getElementById("back-button").style.visibility = "visible";
+        // $("#back-button").animate({opacity: 1}, 500)
 
-    $("#about").animate({opacity: 0}, 500, () => {
-        document.getElementById("about").style.visibility = "hidden";
-    });
-    $("#test").animate({opacity: 0}, 500, () => {
-        document.getElementById("test").style.visibility = "hidden";
-    });
+        $("#button-0").animate({opacity: 0}, 500, () => {
+            document.getElementById("button-0").style.visibility = "hidden";
+        });
+        $("#button-3").animate({opacity: 0}, 500, () => {
+            document.getElementById("button-3").style.visibility = "hidden";
+        });
 
+        // document.querySelector("#resume-left-button").addEventListener('click', (e) => {
+        //     if(resumeIndex > 0) {
+        //         resumeIndex--;
+        //         writeNewResumeText(resumeContent[resumeIndex])
+        //     }
+        // })
+        
+        // document.querySelector("#resume-right-button").addEventListener('click', (e) => {
+        //     if(resumeIndex < resumeContent.length-1) {
+        //         resumeIndex++;
+        //         writeNewResumeText(resumeContent[resumeIndex])
+        //     }
+        // })
+    })
+}
+
+addResumeEvents();
+
+function remapButtons() {
     const rightButton = `
-        <div class="nav-button" id="resume-right-button">
-          <p class="nav-button-title">--></p>
+        <div class="nav-button" id="play-game-button">
+          <p class="nav-button-title">play</p>
         </div>
     `;
 
     const leftButton = `
-        <div class="nav-button" id="resume-left-button">
-          <p class="nav-button-title"><--</p>
+        <div class="nav-button" id="resume-home-button">
+          <p class="nav-button-title">home</p>
         </div>
     `;
     
     document.getElementById("button-2").innerHTML = rightButton;
     document.getElementById("button-1").innerHTML = leftButton;
 
-    document.querySelector("#resume-left-button").addEventListener('click', (e) => {
-        if(resumeIndex > 0) {
-            resumeIndex--;
-            writeNewResumeText(resumeContent[resumeIndex])
-        }
-    })
-    
-    document.querySelector("#resume-right-button").addEventListener('click', (e) => {
-        if(resumeIndex < resumeContent.length-1) {
-            resumeIndex++;
-            writeNewResumeText(resumeContent[resumeIndex])
-        }
-    })
-
-    reuseTextContainer()
-})
+    remapHomeButton();
+}
 
 function writeNewResumeText(text) {
-    writeNewTextForId('#resume-text-id', text, 30)
+    writeNewTextForId('#resume-text-id', text, 23)
 }
 
 function reuseTextContainer() {
-    const textContainer = `
+    const textContainerHTML = `
         <div class="resume-text" id="resume-text-id"></div>
+        <div id="game-board-container"></div>
     `
+    const textContainer = document.getElementById("text-container-id")
+    textContainer.innerHTML = textContainerHTML
+    textContainer.style.height = "18rem";
 
-    document.getElementById("text-container-id").innerHTML = textContainer
+    setTimeout(() => {
+        // Place game board and animate into box
+        document.getElementById("game-board-container").innerHTML = '<div id="game-board"></div>';
+        const gameBoard = document.getElementById("game-board");
+        gameBoard.style.height = textContainer.clientHeight/2 - 40;
+        gameBoard.style.width = textContainer.clientWidth - 40;
+        $("#game-board").animate({opacity: 1}, 1000);
+
+        
+        // Make play game accessible, animate into frame
+        document.getElementById("play-game-button").style.visibility = "visible";
+        $("#play-game-button").animate({opacity: 1}, 4000);
+    }, 5000);
+    
+    // const gameBoard = document.getElementById("game-board");
+    // gameBoard.style.height = textContainer.clientHeight - 40;
+    // gameBoard.style.width = textContainer.clientWidth - 40;
+
+    document.querySelector("#play-game-button").addEventListener('click', () => {
+        playSnakeGame2();
+    })
     writeNewResumeText(resumeContent[resumeIndex])
+}
+
+function remapHomeButton() {
+    let homeButton = document.getElementById("resume-home-button");
+
+    homeButton.addEventListener('click', () => {
+        const textContainerHTML = `
+            <div class="title" id="orig-title">
+            Welcome to Patrick's webbie
+            </div>       
+            <div class="action-text" id="action-text-id"></div>
+        `
+        document.getElementById("text-container-id").innerHTML = textContainerHTML
+
+
+        document.getElementById("button-0").style.visibility = "visible";
+        $("#button-0").animate({opacity: 1}, 500);
+        document.getElementById("button-3").style.visibility = "visible";
+        $("#button-3").animate({opacity: 1}, 500);
+        console.log("homebutton clicked")
+
+        const resumeHTML = `
+            <div class="nav-button" id="resume">
+                <p class="nav-button-title">resume</p>
+            </div>
+        `
+
+        document.getElementById("button-1").innerHTML = resumeHTML;
+
+        const githubHTML = `
+            <div class="nav-button" id="github">
+                <p class="nav-button-title" id="github-title">github</p>
+            </div>
+        `
+
+        document.getElementById("button-2").innerHTML = githubHTML;
+
+        setHomePageEvents();
+        addResumeEvents();
+    })
 }
