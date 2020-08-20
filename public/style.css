@@ -139,7 +139,7 @@ a {
     transition: opacity 1s;
 
     transition-property: height, width;
-    transition-duration: 3s;
+    transition-duration: 2s;
     transition-timing-function: ease-in-out;
 }
 

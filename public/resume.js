@@ -1,4 +1,4 @@
-import {playSnakeGame2} from './snake_game/game.js';
+import {playSnakeGame2, requestID} from './snake_game/game.js';
 
 var resumeIndex = 0;
 
@@ -16,8 +16,13 @@ const resumeContent = [
     `I've also interned with Microsoft and State Farm...`
 ]
 
+let resumeScreen = false;
+let playPressed = false;
+
 export function addResumeEvents() {
     document.querySelector("#resume").addEventListener('click', (e) => {
+        resumeScreen = true;
+        playPressed = false;
         remapButtons();
         reuseTextContainer();
 
@@ -84,17 +89,19 @@ function reuseTextContainer() {
     textContainer.style.height = "18rem";
 
     setTimeout(() => {
-        // Place game board and animate into box
-        document.getElementById("game-board-container").innerHTML = '<div id="game-board"></div>';
-        const gameBoard = document.getElementById("game-board");
-        gameBoard.style.height = textContainer.clientHeight/2 - 40;
-        gameBoard.style.width = textContainer.clientWidth - 40;
-        $("#game-board").animate({opacity: 1}, 1000);
+        if(resumeScreen) {
+            // Place game board and animate into box
+            document.getElementById("game-board-container").innerHTML = '<div id="game-board"></div>';
+            const gameBoard = document.getElementById("game-board");
+            gameBoard.style.height = textContainer.clientHeight/2 - 40;
+            gameBoard.style.width = textContainer.clientWidth - 40;
+            $("#game-board").animate({opacity: 1}, 1000);
 
-        
-        // Make play game accessible, animate into frame
-        document.getElementById("play-game-button").style.visibility = "visible";
-        $("#play-game-button").animate({opacity: 1}, 4000);
+            
+            // Make play game accessible, animate into frame
+            document.getElementById("play-game-button").style.visibility = "visible";
+            $("#play-game-button").animate({opacity: 1}, 4000);
+        }
     }, 5000);
     
     // const gameBoard = document.getElementById("game-board");
@@ -102,7 +109,10 @@ function reuseTextContainer() {
     // gameBoard.style.width = textContainer.clientWidth - 40;
 
     document.querySelector("#play-game-button").addEventListener('click', () => {
-        playSnakeGame2();
+        if(!playPressed) {
+            playSnakeGame2();
+        }
+        playPressed = true;
     })
     writeNewResumeText(resumeContent[resumeIndex])
 }
@@ -111,14 +121,19 @@ function remapHomeButton() {
     let homeButton = document.getElementById("resume-home-button");
 
     homeButton.addEventListener('click', () => {
+        console.log("request id is " + requestID);
+        window.cancelAnimationFrame(requestID);
+
+        document.getElementById("tagline-id").innerText = "Coder. Gamer. Foodie."
         const textContainerHTML = `
             <div class="title" id="orig-title">
             Welcome to Patrick's webbie
             </div>       
             <div class="action-text" id="action-text-id"></div>
         `
-        document.getElementById("text-container-id").innerHTML = textContainerHTML
-
+        const textContainer = document.getElementById("text-container-id")
+        textContainer.innerHTML = textContainerHTML
+        textContainer.style.height = "9rem";
 
         document.getElementById("button-0").style.visibility = "visible";
         $("#button-0").animate({opacity: 1}, 500);
