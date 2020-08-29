@@ -169,3 +169,7 @@ a {
     opacity: 0;
     visibility: hidden;
 }
+
+.resume-text-container {
+    height: 9rem;
+}
