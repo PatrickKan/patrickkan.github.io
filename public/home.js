@@ -78,7 +78,7 @@ function setHomePageEvents() {
     })
  }
 
- setHomePageEvents();
+//  setHomePageEvents();
 
 function writeNewActionText(text) {
     writeNewTextForId('#action-text-id', text)

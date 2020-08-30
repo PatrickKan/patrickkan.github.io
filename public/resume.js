@@ -34,6 +34,7 @@ const resumeContent = [
     "thanks for playing!!!!!!"
 ]
 
+let resumeCounter = 0;
 let resumeScreen = false;
 let playPressed = false;
 // let resumeAnimating = false;
@@ -112,10 +113,10 @@ function reuseTextContainer() {
     textContainer.innerHTML = textContainerHTML
     textContainer.style.height = "18rem";
 
+    let currResumeCounter = resumeCounter;
     // resumeAnimating = true;
     setTimeout(() => {
-
-        if(resumeScreen) {
+        if(resumeScreen && resumeCounter == currResumeCounter) {
             // resumeAnimating = false;
             // Place game board and animate into box
             document.getElementById("game-board-container").innerHTML = '<div id="game-board"></div>';
