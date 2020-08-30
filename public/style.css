@@ -139,6 +139,16 @@ a {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    /* Initially hidden, loaded in with animations */
+    visibility: hidden;
+    /* opacity: 0; */
+
+    /* transition: opacity 1s ease-in-out; */
+
+    /* transition-property: height, width;
+    transition-duration: 2s;
+    transition-timing-function: ease-in-out; */
 }
 
 .nav-button {
@@ -150,12 +160,6 @@ a {
     height: 3rem;
     
     position: relative;
-
-    transition: opacity 1s;
-
-    transition-property: height, width;
-    transition-duration: 2s;
-    transition-timing-function: ease-in-out;
 }
 
 /* title for the navigation buttons */

@@ -15,6 +15,8 @@ const resumeContent = [
     `was at Facebook as a Software Engineering Intern!`,
     "Hmm, try to guess what team I was on :)",
     "No guesses?",
+    "Keep eating the food then to find out (or press the arrow keys)!",
+    "Any time now...",
     `Well, I worked under AI Infra with the Machine Learning Training Platform team!`,
     "I got to collaborate between a lot of different infra teams,", 
     "with my project preventing SEVs and impacting a wide variety of other infra teams...",
