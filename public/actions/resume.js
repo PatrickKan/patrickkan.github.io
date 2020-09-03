@@ -1,4 +1,4 @@
-import {playSnakeGame2, requestID} from './snake_game/game.js';
+import {playSnakeGame2, requestID} from '../snake_game/game.js';
 
 var resumeIndex = 0;
 
@@ -43,6 +43,7 @@ let playPressed = false;
 
 export function addResumeEvents() {
     document.querySelector("#resume").addEventListener('click', (e) => {
+        resumeCounter++;
         resumeScreen = true;
         playPressed = false;
         remapButtons();
@@ -53,12 +54,25 @@ export function addResumeEvents() {
         // document.getElementById("back-button").style.visibility = "visible";
         // $("#back-button").animate({opacity: 1}, 500)
 
-        $("#button-0").animate({opacity: 0}, 500, () => {
-            document.getElementById("button-0").style.visibility = "hidden";
+        $("#button-1").animate({opacity: 0}, 500, () => {
+            document.getElementById("button-1").style.visibility = "hidden";
         });
-        $("#button-3").animate({opacity: 0}, 500, () => {
-            document.getElementById("button-3").style.visibility = "hidden";
-        });
+
+        setTimeout(() => {
+            document.getElementById("button-1").style.visibility = "visible";
+            $("#button-1").animate({opacity: 1}, 1000)
+        }, 7000);
+
+        if(resumeScreen) {
+            $("#button-0").animate({opacity: 0}, 500, () => {
+                if(resumeScreen)
+                    document.getElementById("button-0").style.visibility = "hidden";
+            });
+            $("#button-3").animate({opacity: 0}, 500, () => {
+                if(resumeScreen)
+                    document.getElementById("button-3").style.visibility = "hidden";
+            });
+        }
     })
 }
 
@@ -118,6 +132,8 @@ function reuseTextContainer() {
     let currResumeCounter = resumeCounter;
     // resumeAnimating = true;
     setTimeout(() => {
+        console.log("currResumeCounter: " + currResumeCounter)
+        console.log("resumeCounter: " + resumeCounter)
         if(resumeScreen && resumeCounter == currResumeCounter) {
             // resumeAnimating = false;
             // Place game board and animate into box
@@ -217,7 +233,7 @@ function remapHomeButton() {
 
         const testButton = `
         <div class="nav-button" id="test">
-          <p class="nav-button-title">test</p>
+          <p class="nav-button-title">linkedin</p>
         </div>
         `
 

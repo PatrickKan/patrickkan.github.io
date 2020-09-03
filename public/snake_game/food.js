@@ -1,6 +1,6 @@
 import { onSnake, expandSnake } from './snake.js'
 import { randomGridPosition } from './grid.js'
-import { incrementResumeIndexLoop } from '../resume.js'
+import { incrementResumeIndexLoop } from '../actions/resume.js'
 
 let food = getRandomFoodPosition()
 const EXPANSION_RATE = 3

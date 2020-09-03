@@ -1,11 +1,37 @@
 // $
 
+// var keystrokeSound = new Audio('single-type.mp3');
+
+// var interval;
+
+
+
+// function playSound () {
+//     clearInterval(interval);
+//     interval = setInterval(function(){
+//             // keystrokeSound.pause();
+//             var keystrokeSound = new Audio('single-type-cut.mp3');
+//             keystrokeSound.currentTime = 0;
+//             keystrokeSound.play();
+//     },120);
+// }
+
 let taglineOptions = {
     strings: ['Coder. Gamer. Foodie.'],
     typeSpeed: 60,
     showCursor: false,
+    // preStringTyped : function(array, self){
+    //     playSound();
+    // },
+    // onStringTyped : function(array, self){
+    //     clearInterval(interval);
+    // },
+    // onComplete: function(array, self){
+    //     clearInterval(interval);
+    // }
 };
 let typedTagline = new Typed('#tagline-id', taglineOptions);
+
 
 setTimeout(() => {
     animateBox();
@@ -37,6 +63,15 @@ function setBoxText() {
         strings: ['Welcome to Patrick\'s webbie'],
         typeSpeed: 40,
         showCursor: false,
+        // preStringTyped : function(array, self){
+        //     playSound();
+        // },
+        // onStringTyped : function(array, self){
+        //     clearInterval(interval);
+        // },
+        // onComplete: function(array, self){
+        //     clearInterval(interval);
+        // }
     };
     let typedBoxTitle = new Typed('#orig-title', boxTextOptions);
 

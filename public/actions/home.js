@@ -57,8 +57,12 @@ function setHomePageEvents() {
             resumeSelected = false;
             githubSelected = false;
             testSelected = true;
-            writeNewActionText('test selected')
+            writeNewActionText('find out more about me on <a class="action-text-color" href="https://www.linkedin.com/in/patrick-kan/">linkedin</a>!')
         }
+    })
+    
+    document.querySelector("#about").addEventListener('click', (e) => {
+        writeNewActionText('404 ERROR... about button coming soon!');
     })
 
     // document.querySelector("#resume").addEventListener('click', (e) => {
@@ -74,7 +78,7 @@ function setHomePageEvents() {
     // })
 
     document.querySelector("#test").addEventListener('click', (e) => {
-        writeNewActionText('test clicked')
+        window.open("https://www.linkedin.com/in/patrick-kan/")
     })
  }
 

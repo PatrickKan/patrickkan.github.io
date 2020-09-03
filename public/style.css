@@ -64,7 +64,7 @@ a {
     vertical-align: middle;
 
     margin: auto;
-    border: 7px solid white;
+    border: 5px solid white;
     padding: 20px;
     
     width: 28rem;
@@ -212,4 +212,8 @@ a {
 
 .animated-box-height {
     height: 9rem;
+}
+
+#test {
+    font-size: 1.8rem;
 }
