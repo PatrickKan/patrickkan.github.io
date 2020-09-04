@@ -160,6 +160,7 @@ a {
     height: 3rem;
     
     position: relative;
+    cursor:pointer;
 }
 
 /* title for the navigation buttons */
