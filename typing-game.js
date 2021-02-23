@@ -2,6 +2,8 @@ const keys = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
 
 const timestamps = [];
 
+var elementIds = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "SPACE"]
+
 var sentenceIndex = 0;
 var sentence = [..."HELLO WORLD AND POTATOES "]
 
@@ -48,6 +50,41 @@ function getTimestamp() {
   return Math.floor(Date.now() / 1000)
 }
 
+function registerKeyPress(keyPressed) {
+  const keyElement = document.getElementById(keyPressed);
+  const highlightedKey = document.querySelector(".selected");
+  
+  keyElement.classList.add("hit")
+  keyElement.addEventListener('animationend', () => {
+    keyElement.classList.remove("hit")
+  })
+  
+  console.log("ENTERING KEY PRESS")
+
+  if (keyPressed === highlightedKey.innerHTML.toUpperCase()) {
+    timestamps.unshift(getTimestamp());
+    const elapsedTime = timestamps[0] - timestamps[1];
+    console.log(`Character per minute ${60/elapsedTime}`)
+    highlightedKey.classList.remove("selected");
+    targetKeyInSentence();
+
+    if(keyPressed === 'SPACE') {
+        document.getElementById("add-text").innerHTML += " " 
+    } else {
+        document.getElementById("add-text").innerHTML += keyPressed
+    }
+  } 
+}
+
+// console.log(elementIds)
+
+for(const elemId of elementIds) {
+    // console.log("element id" + elemId)
+    document.getElementById(elemId).addEventListener("click", () => {
+        registerKeyPress(elemId)
+    })
+}
+
 document.addEventListener("keydown", event => {
   var keyPressed;
 
@@ -64,38 +101,7 @@ document.addEventListener("keydown", event => {
     keyPressed = String.fromCharCode(code);
   }
 
-//   const keyPressed = String.fromCharCode(code);
-  const keyElement = document.getElementById(keyPressed);
-  const highlightedKey = document.querySelector(".selected");
-  
-  keyElement.classList.add("hit")
-  keyElement.addEventListener('animationend', () => {
-    keyElement.classList.remove("hit")
-  })
-
-  var comparedKey;
-  console.log(highlightedKey.innerHTML + "highlighted")
-  if(highlightedKey.innerHTML === "Space" && keyPressed === "SPACE") {
-      comparedKey = 'SPACE'
-  } else {
-      comparedKey = highlightedKey.innerHTML
-  }
-
-//   var comparedKey = keyPressed === 'SPACE' ? 'SPACE' : highlightedKey.innerHTML
-  
-  if (keyPressed === highlightedKey.innerHTML.toUpperCase()) {
-    timestamps.unshift(getTimestamp());
-    const elapsedTime = timestamps[0] - timestamps[1];
-    console.log(`Character per minute ${60/elapsedTime}`)
-    highlightedKey.classList.remove("selected");
-    targetKeyInSentence();
-
-    if(keyPressed === 'SPACE') {
-        document.getElementById("add-text").innerHTML += " " 
-    } else {
-        document.getElementById("add-text").innerHTML += keyPressed
-    }
-  } 
+  registerKeyPress(keyPressed)
 })
 
 targetKeyInSentence();
