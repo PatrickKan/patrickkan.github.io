@@ -1,11 +1,13 @@
-const keys = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
+const keys = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ."];
 
 const timestamps = [];
 
 var elementIds = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "SPACE"]
 
 var sentenceIndex = 0;
-var sentence = [..."HELLO WORLD AND POTATOES "]
+var sentence = [..."KYLETOLENTINO.COM"]
+
+var createLink = false
 
 timestamps.unshift(getTimestamp());
 
@@ -23,6 +25,8 @@ function targetKeyInSentence() {
 
     character = sentence[sentenceIndex]
 
+    // createLink = false
+
     if(character == " ") {
         character = "SPACE"
     }
@@ -30,12 +34,17 @@ function targetKeyInSentence() {
     const key = document.getElementById(character);
     key.classList.add("selected");    
 
-    sentenceIndex++
+    // sentenceIndex++
 
-    if(sentenceIndex >= sentence.length) {
-        sentenceIndex = 0
-        // document.getElementById("add-text").innerText = ""
-    } 
+    // console.log(sentenceIndex)
+
+    // if(sentenceIndex >= sentence.length) {
+    //     sentenceIndex = 0
+    //     // document.getElementById("add-text").innerText = ""
+    //     createLink = true
+    // } 
+
+    console.log(timestamps)
 
     return character
 }
@@ -62,6 +71,16 @@ function registerKeyPress(keyPressed) {
   console.log("ENTERING KEY PRESS")
 
   if (keyPressed === highlightedKey.innerHTML.toUpperCase()) {
+    sentenceIndex++
+    if(sentenceIndex >= sentence.length) {
+      sentenceIndex = 0
+      // document.getElementById("add-text").innerText = ""
+      createLink = true
+    } else {
+      createLink = false
+    }
+
+
     timestamps.unshift(getTimestamp());
     const elapsedTime = timestamps[0] - timestamps[1];
     console.log(`Character per minute ${60/elapsedTime}`)
@@ -72,6 +91,11 @@ function registerKeyPress(keyPressed) {
         document.getElementById("add-text").innerHTML += " " 
     } else {
         document.getElementById("add-text").innerHTML += keyPressed
+    }
+
+    if(createLink) {
+      document.getElementById("add-text").innerHTML = "<a target='_blank' href='https://" + document.getElementById("add-text").innerHTML + "'>" + document.getElementById("add-text").innerHTML + "</a>"
+      console.log("CREATING LINK")
     }
   } 
 }

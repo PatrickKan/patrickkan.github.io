@@ -32,12 +32,21 @@ body {
   .keyboard {
     display: flex;
     flex-direction: column;
+    /* border: 2px solid white;
+    outline: solid 2px blue; */
+    outline-offset: 10px;
   }
   
   .row {
     list-style: none;
     display: flex;
+    margin-left: -1.5em;
+    margin-right: 1em;
   }
+/* 
+  h1 {
+    text-
+  } */
   
   li {
     height: 3em;
