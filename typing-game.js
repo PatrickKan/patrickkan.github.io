@@ -2,7 +2,7 @@ const keys = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ."];
 
 const timestamps = [];
 
-var elementIds = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "SPACE"]
+var elementIds = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ.", "SPACE"]
 
 var sentenceIndex = 0;
 var sentence = [..."KYLETOLENTINO.COM"]
