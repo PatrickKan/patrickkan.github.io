@@ -61,7 +61,7 @@ function setBoxText() {
     console.log("Setting box text")
     let boxTextOptions = {
         strings: ['Welcome to Patrick\'s webbie'],
-        typeSpeed: 40,
+        typeSpeed: 20,
         showCursor: false,
         // preStringTyped : function(array, self){
         //     playSound();
@@ -81,8 +81,8 @@ function setBoxText() {
         
         setTimeout(() => {
             makeNavButtonsVisible();
-        }, 1000);
-    }, 2000);
+        }, 800);
+    }, 1500);
 }
 
 function makeNavButtonsVisible() {

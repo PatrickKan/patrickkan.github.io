@@ -1,7 +1,7 @@
 var options = {
     strings: ['choose an action...'],
     smartBackspace: true, // Default value
-    typeSpeed: 50,
+    typeSpeed: 40,
 }
 var typed = ""
 
