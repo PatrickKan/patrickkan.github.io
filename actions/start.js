@@ -60,7 +60,7 @@ function setBoxText() {
     // let boxText = document.getElementById("orig-title");
     console.log("Setting box text")
     let boxTextOptions = {
-        strings: ['Welcome to Patrick\'s webbie'],
+        strings: ['Welcome to Patrick\'s website'],
         typeSpeed: 20,
         showCursor: false,
         // preStringTyped : function(array, self){
